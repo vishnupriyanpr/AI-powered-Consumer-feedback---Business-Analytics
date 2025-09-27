@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Feedback Analyzer - AMIL Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>AI Feedback Analyzer</h1>
+            </div>
+            <div class="gpu-status" id="gpuStatus">
+                <i class="fas fa-microchip"></i>
+                <span>RTX 4060 Ready</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <button class="nav-btn active" data-tab="analyzer">
+            <i class="fas fa-microscope"></i>
+            Feedback Analyzer
+        </button>
+        <button class="nav-btn" data-tab="analytics">
+            <i class="fas fa-chart-bar"></i>
+            Analytics Dashboard
+        </button>
+        <button class="nav-btn" data-tab="actions">
+            <i class="fas fa-tasks"></i>
+            GDG Action Matrix
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Analyzer Tab -->
+        <section class="tab-content active" id="analyzer">
+            <div class="analyzer-grid">
+                <div class="input-section">
+                    <h2><i class="fas fa-edit"></i> Feedback Input</h2>
+                    <div class="input-container">
+                        <textarea id="feedbackInput" placeholder="Paste customer feedback here..."></textarea>
+                        <div class="input-controls">
+                            <select id="languageSelect">
+                                <option value="auto">Auto-detect Language</option>
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="hi">Hindi</option>
+                            </select>
+                            <button id="analyzeBtn" class="primary-btn">
+                                <i class="fas fa-play"></i>
+                                Analyze Feedback
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h2><i class="fas fa-chart-pie"></i> Analysis Results</h2>
+                    <div class="results-grid" id="resultsGrid">
+                        <div class="result-card">
+                            <h3>Sentiment Analysis</h3>
+                            <div class="sentiment-display" id="sentimentDisplay">
+                                <div class="sentiment-score">--</div>
+                                <div class="sentiment-label">Analyzing...</div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3>Urgency Score</h3>
+                            <div class="urgency-display" id="urgencyDisplay">
+                                <div class="urgency-meter">
+                                    <div class="urgency-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="urgency-text">No data</div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3>Key Themes</h3>
+                            <div class="themes-display" id="themesDisplay">
+                                <div class="no-data">No themes detected</div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h3>Suggested Response</h3>
+                            <div class="response-display" id="responseDisplay">
+                                <div class="no-data">Generate response after analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-metrics">
+                <div class="metric">
+                    <span>Inference Time:</span>
+                    <span id="inferenceTime">-- ms</span>
+                </div>
+                <div class="metric">
+                    <span>GPU Acceleration:</span>
+                    <span id="gpuAcceleration">Enabled</span>
+                </div>
+                <div class="metric">
+                    <span>Model Confidence:</span>
+                    <span id="modelConfidence">--%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Tab -->
+        <section class="tab-content" id="analytics">
+            <div class="analytics-grid">
+                <div class="chart-container">
+                    <h3>Sentiment Distribution</h3>
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Theme Frequency</h3>
+                    <canvas id="themeChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Urgency Timeline</h3>
+                    <canvas id="urgencyChart"></canvas>
+                </div>
+                <div class="stats-panel">
+                    <h3>Statistics</h3>
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Total Feedback</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0%</div>
+                            <div class="stat-label">Positive Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">High Priority</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions Tab -->
+        <section class="tab-content" id="actions">
+            <div class="actions-grid">
+                <div class="action-generator">
+                    <h3><i class="fas fa-magic"></i> GDG Action Matrix</h3>
+                    <div class="action-list" id="actionList">
+                        <div class="no-actions">No actions generated yet</div>
+                    </div>
+                </div>
+                <div class="action-templates">
+                    <h3><i class="fas fa-clipboard-list"></i> Action Templates</h3>
+                    <div class="template-list">
+                        <div class="template-item">
+                            <div class="template-title">Technical Workshop Issue</div>
+                            <div class="template-description">Create setup tutorial video</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-title">Networking Feedback</div>
+                            <div class="template-description">Improve networking sessions</div>
+                        </div>
+                        <div class="template-item">
+                            <div class="template-title">Content Quality</div>
+                            <div class="template-description">Review speaker guidelines</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Processing with RTX 4060...</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
