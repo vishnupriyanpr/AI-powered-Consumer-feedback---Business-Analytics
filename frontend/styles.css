@@ -1,21 +1,28 @@
 /* AMIL Project Styles - Optimized for RTX 4060 GPU Acceleration */
 
 :root {
-    --primary-color: #2563eb;
+    /* Google Color Integration with Dark Theme */
+    --google-blue: #4285F4;
+    --google-red: #DB4437;
+    --google-yellow: #F4B400;
+    --google-green: #0F9D58;
+
+    /* Your Original Dark Theme Colors */
+    --primary-color: var(--google-blue);
     --secondary-color: #1e40af;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --danger-color: #ef4444;
+    --success-color: var(--google-green);
+    --warning-color: var(--google-yellow);
+    --danger-color: var(--google-red);
     --dark-bg: #0f172a;
     --card-bg: #1e293b;
     --border-color: #334155;
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #64748b;
-    --gradient-primary: linear-gradient(135deg, #2563eb, #3b82f6);
-    --gradient-success: linear-gradient(135deg, #10b981, #059669);
-    --gradient-warning: linear-gradient(135deg, #f59e0b, #d97706);
-    --gradient-danger: linear-gradient(135deg, #ef4444, #dc2626);
+    --gradient-primary: linear-gradient(135deg, var(--google-blue), #3b82f6);
+    --gradient-success: linear-gradient(135deg, var(--google-green), #059669);
+    --gradient-warning: linear-gradient(135deg, var(--google-yellow), #d97706);
+    --gradient-danger: linear-gradient(135deg, var(--google-red), #dc2626);
     --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.6);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -221,7 +228,7 @@ body {
 #feedbackInput:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
 }
 
 .input-controls {
@@ -271,6 +278,12 @@ body {
     transform: translateY(0);
 }
 
+.primary-btn:disabled {
+    background: rgba(66, 133, 244, 0.3);
+    cursor: not-allowed;
+    transform: none;
+}
+
 /* Results Grid */
 .results-grid {
     display: grid;
@@ -307,6 +320,24 @@ body {
     font-weight: 700;
     margin-bottom: 8px;
     background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sentiment-score.positive {
+    background: var(--gradient-success);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sentiment-score.negative {
+    background: var(--gradient-danger);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sentiment-score.neutral {
+    background: var(--gradient-warning);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -350,7 +381,7 @@ body {
 
 .theme-tag {
     padding: 4px 12px;
-    background: rgba(37, 99, 235, 0.2);
+    background: rgba(66, 133, 244, 0.2);
     border: 1px solid var(--primary-color);
     border-radius: 20px;
     font-size: 0.75rem;
@@ -519,7 +550,7 @@ body {
 }
 
 .template-item:hover {
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(66, 133, 244, 0.1);
     border-color: var(--primary-color);
 }
 
@@ -561,7 +592,7 @@ body {
 .spinner {
     width: 60px;
     height: 60px;
-    border: 4px solid rgba(37, 99, 235, 0.2);
+    border: 4px solid rgba(66, 133, 244, 0.2);
     border-top: 4px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -587,8 +618,8 @@ body {
 }
 
 @keyframes pulse-glow {
-    0%, 100% { filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.5)); }
-    50% { filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.8)); }
+    0%, 100% { filter: drop-shadow(0 0 5px rgba(66, 133, 244, 0.5)); }
+    50% { filter: drop-shadow(0 0 15px rgba(66, 133, 244, 0.8)); }
 }
 
 @keyframes status-pulse {

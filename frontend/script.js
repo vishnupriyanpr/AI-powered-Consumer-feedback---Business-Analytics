@@ -31,7 +31,7 @@ class FeedbackAnalyzer {
             this.analyzeFeedback();
         });
 
-        // Real-time input validation
+        // FIXED: Real-time input validation (this was the issue)
         document.getElementById('feedbackInput').addEventListener('input', (e) => {
             this.validateInput(e.target.value);
         });
@@ -49,6 +49,74 @@ class FeedbackAnalyzer {
                 this.analyzeFeedback();
             }
         });
+
+        // NEW: File upload functionality
+        const fileUpload = document.getElementById('fileUpload');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        if (fileUpload && uploadBtn) {
+            uploadBtn.addEventListener('click', () => {
+                this.uploadFile();
+            });
+        }
+    }
+
+    // FIXED: Button validation logic
+    validateInput(text) {
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const isValid = text.trim().length >= 10; // Minimum 10 characters
+
+        analyzeBtn.disabled = !isValid;
+        analyzeBtn.style.opacity = isValid ? '1' : '0.6';
+
+        // Don't disable while typing - only when text is too short
+        if (isValid) {
+            analyzeBtn.style.cursor = 'pointer';
+        } else {
+            analyzeBtn.style.cursor = 'not-allowed';
+        }
+    }
+
+    // NEW: File upload function
+    async uploadFile() {
+        const fileInput = document.getElementById('fileUpload');
+        if (!fileInput.files.length) {
+            this.showAlert('Please select a file to upload', 'warning');
+            return;
+        }
+
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('file', file);
+
+        this.showLoading(true);
+
+        try {
+            const response = await fetch(`${this.apiBaseUrl}/upload/analyze`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`Upload failed: ${response.status}`);
+            }
+
+            const result = await response.json();
+
+            // Display upload results
+            this.showAlert(`File uploaded successfully! ${result.line_count || result.records_processed || 'Multiple'} items processed.`, 'success');
+
+            // If it returns analysis data, display it
+            if (result.analysis) {
+                this.displayResults(result.analysis);
+            }
+
+        } catch (error) {
+            console.error('Upload failed:', error);
+            this.showAlert('Upload failed. Please check your file and try again.', 'error');
+        } finally {
+            this.showLoading(false);
+        }
     }
 
     switchTab(tabName) {
@@ -165,7 +233,7 @@ class FeedbackAnalyzer {
             (sentimentScore * 100).toFixed(1);
         sentimentDisplay.querySelector('.sentiment-label').textContent = sentimentLabel;
 
-        // Apply color based on sentiment
+        // Apply color based on sentiment (using Google colors)
         const scoreElement = sentimentDisplay.querySelector('.sentiment-score');
         scoreElement.className = `sentiment-score ${sentimentLabel.toLowerCase()}`;
 
@@ -229,6 +297,7 @@ class FeedbackAnalyzer {
     }
 
     initializeCharts() {
+        // Your existing chart initialization code remains the same
         // Sentiment Chart
         const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
         this.charts.sentiment = new Chart(sentimentCtx, {
@@ -237,8 +306,8 @@ class FeedbackAnalyzer {
                 labels: ['Positive', 'Neutral', 'Negative'],
                 datasets: [{
                     data: [0, 0, 0],
-                    backgroundColor: ['#10b981', '#64748b', '#ef4444'],
-                    borderColor: ['#059669', '#475569', '#dc2626'],
+                    backgroundColor: ['#0F9D58', '#F4B400', '#DB4437'], // Google colors
+                    borderColor: ['#0F9D58', '#F4B400', '#DB4437'],
                     borderWidth: 2
                 }]
             },
@@ -261,8 +330,8 @@ class FeedbackAnalyzer {
                 datasets: [{
                     label: 'Frequency',
                     data: [],
-                    backgroundColor: '#2563eb',
-                    borderColor: '#1d4ed8',
+                    backgroundColor: '#4285F4', // Google blue
+                    borderColor: '#1a73e8',
                     borderWidth: 1
                 }]
             },
@@ -296,8 +365,8 @@ class FeedbackAnalyzer {
                 datasets: [{
                     label: 'Urgency Score',
                     data: [],
-                    borderColor: '#f59e0b',
-                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    borderColor: '#F4B400', // Google yellow
+                    backgroundColor: 'rgba(244, 180, 0, 0.1)',
                     tension: 0.4,
                     fill: true
                 }]
@@ -325,6 +394,7 @@ class FeedbackAnalyzer {
         });
     }
 
+    // Keep all your other existing methods...
     updateAnalytics() {
         if (this.analysisHistory.length === 0) return;
 
@@ -437,14 +507,6 @@ class FeedbackAnalyzer {
         }
     }
 
-    validateInput(text) {
-        const analyzeBtn = document.getElementById('analyzeBtn');
-        const isValid = text.trim().length > 10;
-
-        analyzeBtn.disabled = !isValid;
-        analyzeBtn.style.opacity = isValid ? '1' : '0.6';
-    }
-
     showLoading(show) {
         const loadingOverlay = document.getElementById('loadingOverlay');
         loadingOverlay.classList.toggle('active', show);
@@ -458,6 +520,7 @@ class FeedbackAnalyzer {
             <div class="alert-content">
                 <i class="fas fa-${type === 'error' ? 'exclamation-circle' :
                                    type === 'warning' ? 'exclamation-triangle' :
+                                   type === 'success' ? 'check-circle' :
                                    'info-circle'}"></i>
                 <span>${message}</span>
             </div>
@@ -498,10 +561,3 @@ class FeedbackAnalyzer {
 document.addEventListener('DOMContentLoaded', () => {
     new FeedbackAnalyzer();
 });
-
-// Service Worker for offline functionality
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-        .then(registration => console.log('SW registered'))
-        .catch(error => console.log('SW registration failed'));
-}

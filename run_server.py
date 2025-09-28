@@ -4,14 +4,13 @@ import sys
 import os
 import logging
 from pathlib import Path
+from flask import Flask, send_from_directory, jsonify
+from flask_cors import CORS
+from datetime import datetime
 
-# Add project root to Python path
+# Add project root to path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
-
-# Set environment variables
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # Use first GPU
-os.environ['TRANSFORMERS_CACHE'] = str(project_root / 'models' / 'transformers_cache')
 
 # Configure logging
 logging.basicConfig(
@@ -19,22 +18,49 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 
+app = Flask(__name__)
+CORS(app)
+
 def main():
-    """Main server runner"""
     logger = logging.getLogger(__name__)
 
     try:
         logger.info("🚀 Starting AMIL Project - AI Customer Feedback Analyzer")
         logger.info(f"📁 Project root: {project_root}")
 
-        # Import and run the main application
-        from backend.main import app
+        # Register serving routes
+        @app.route('/')
+        def serve_frontend():
+            frontend_path = os.path.join(project_root, 'frontend', 'index.html')
+            logger.info(f"Trying to serve: {frontend_path}")
+            if os.path.exists(frontend_path):
+                return send_from_directory(os.path.join(project_root, 'frontend'), 'index.html')
+            else:
+                return jsonify({
+                    'message': 'AMIL Project Backend is running!',
+                    'frontend': 'frontend/index.html not found - create it!',
+                    'api_health': '/health'
+                })
 
-        # Run the Flask application
+        @app.route('/<path:path>')
+        def serve_static(path):
+            static_path = os.path.join(project_root, 'frontend', path)
+            if os.path.exists(static_path):
+                return send_from_directory(os.path.join(project_root, 'frontend'), path)
+            return serve_frontend()
+
+        @app.route('/health')
+        def health():
+            return jsonify({
+                'status': 'healthy',
+                'timestamp': datetime.now().isoformat(),
+                'message': 'AIML Project is running!'
+            })
+
         app.run(
             host='0.0.0.0',
             port=5000,
-            debug=False,  # Set to False for production
+            debug=True,
             threaded=True,
             use_reloader=False
         )
