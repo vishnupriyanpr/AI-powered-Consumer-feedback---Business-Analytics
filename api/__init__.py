@@ -1,3 +1,6 @@
-"""__init__.py - AMIL Project Component"""
+"""API package for AI Customer Feedback Analyzer - AMIL Project"""
 
-# TODO: Implement __init__.py functionality
+from .routes import api_bp
+from .middleware import setup_middleware
+
+__all__ = ['api_bp', 'setup_middleware']

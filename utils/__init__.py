@@ -1,3 +1,13 @@
-"""__init__.py - AMIL Project Component"""
+"""Utilities package for AI Customer Feedback Analyzer - AMIL Project"""
 
-# TODO: Implement __init__.py functionality
+from .database_manager import DatabaseManager
+from .gpu_utils import GPUManager
+from .multilingual_handler import MultilingualHandler
+from .data_processor import DataProcessor
+
+__all__ = [
+    'DatabaseManager',
+    'GPUManager',
+    'MultilingualHandler',
+    'DataProcessor'
+]
