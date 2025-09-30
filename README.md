@@ -38,24 +38,30 @@ Built with PyTorch, Flask, and modern web technologies, optimized for NVIDIA RTX
 ---
 
 ## Project Structure
-aiml-feedback-analyzer/
-├── frontend/
-│ ├── index.html # Main application interface
-│ ├── script.js # Core JavaScript functionality
-│ ├── styles.css # Material Design 3.0 styling
-│ └── assets/ # Static assets and icons
-├── backend/
-│ ├── app.py # Flask API server
-│ ├── models/ # Trained ML models
-│ │ ├── sentiment_analyzer/ # Custom BERT sentiment model
-│ │ └── emotion_detector/ # Multi-label emotion classifier
-│ ├── services/ # Business logic services
-│ └── utils/ # Utility functions
-├── notebooks/ # Model training notebooks
-├── data/ # Training and test datasets
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+```bash
+📁 aiml-feedback-analyzer/
+├── 📁 frontend/
+│   ├── 📄 index.html
+│   ├── 📄 script.js
+│   ├── 📄 styles.css
+│   └── 📁 assets/
+├── 📁 backend/
+│   ├── 📄 app.py
+│   ├── 📁 models/
+│   │   ├── 📁 sentiment_analyzer/
+│   │   └── 📁 emotion_detector/
+│   ├── 📁 services/
+│   └── 📁 utils/
+├── 📁 notebooks/
+├── 📁 data/
+├── 📄 requirements.txt
+└── 📄 README.md
+```
 
+# Note : Refer Huggingface for the trained ML Model, link :
+```bash
+https://huggingface.co/vishnupriyan07/Customer-Reviews-Sentiment-Business-Analysis
+```
 
 ---
 ## 🚀 **Core Capabilities**
@@ -80,8 +86,9 @@ aiml-feedback-analyzer/
 - **Bulk Processing**: CSV/PDF upload → Gemini API integration → Automated business insights → Comprehensive reporting
 - **Export Capabilities**: JSON/CSV reports → Business recommendations → Executive summaries → Actionable insights
 ---
+
 ### Technical Innovation 🔧
-**Custom Training Pipeline:** Domain-specific BERT fine-tuning → Active learning → Knowledge distillation → Adversarial robustness  
+**Custom Training Pipeline:** Domain-specific BERT fine-tuning → Active learning → Knowledge distillation →  
 **GPU Optimization:** CUDA kernels → TensorRT integration → Memory pooling → Async processing  
 **Material Design:** Google Design System → Responsive layout → Smooth animations → Accessibility compliance  
 **API Integration:** Flask backend → WebSocket real-time → Gemini AI → Google Drive connectivity
@@ -91,11 +98,26 @@ aiml-feedback-analyzer/
 Installation:
 
 ```bash
+# Clone git repo
 git clone https://github.com/vishnupriyanpr/AI-powered-Consumer-feedback---Business-Analytics.git
 cd AI-powered-Consumer-feedback---Business-Analytics
+
+# Install the Hugging Face CLI
+pip install -U "huggingface_hub[cli]"
+
+# Login with your Hugging Face credentials
+hf auth login
+
+# Push your model files
+hf upload vishnupriyan07/Customer-Reviews-Sentiment-Business-Analysis
+
+# Install Dependencies
 pip install -r requirements.txt
+
+# Run the app
 python app.py
 ```
+
 Web Interface:
 ```bash
 Navigate to http://localhost:5000
@@ -106,6 +128,12 @@ Requirements:
 - 8GB+ system RAM, 4GB+ GPU memory
 - Modern web browser with JavaScript enabled
 
+---
+
+
+## Demo Video
+
+<iframe src="https://player.vimeo.com/video/1123246906" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 ---
 ## 🤝 Contributing
 PRs welcome! Development flow:
