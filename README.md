@@ -158,7 +158,7 @@ Apache License 2.0 (see LICENSE file)
 
 ## 🙌 Acknowledgments & Core Team
 
-This cutting-edge AI project is crafted with precision and innovation by **Vishnupriyan P R**. Leveraging state-of-the-art transformer architectures and enterprise-grade engineering practices to deliver unparalleled customer feedback intelligence.
+This project is made with precision and innovation by **Vishnupriyan P R**. 
 
 <table align="center">
   <tr>
