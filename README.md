@@ -1,4 +1,4 @@
-#  🧠 AIML Customer Feedback Analyzer - Enterprise AI Platform
+# Customer Feedback Analyzer - Enterprise AI Platform
 
 <div align="center">
     
