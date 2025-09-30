@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIML Customer Feedback Analyzer • Google AI Enterprise Platform</title>
+
+    <!-- Enhanced Meta Tags -->
+    <meta name="description" content="AI-powered customer feedback analysis with RTX 4060 GPU acceleration">
+    <meta name="keywords" content="AI, Machine Learning, Customer Feedback, Sentiment Analysis, Google AI">
+    <meta name="author" content="AIML Project Team">
+
+    <!-- Progressive Web App -->
+    <meta name="theme-color" content="#4285F4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Google Fonts - Enhanced Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+
+    <!-- Enhanced Icon Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+</head>
+
+<body class="google-material-theme">
+<div class="app-container" id="appContainer">
+    <!-- Enhanced Header with Google Material Design -->
+    <header class="header-enhanced">
+        <div class="header-content">
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <span class="material-symbols-outlined">psychology</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Consumer Feedback Analyzer AI</h1>
+                        <span class="logo-subtitle">Done by Vishnupriyan P R</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status & Controls -->
+            <div class="header-controls">
+                <!-- GPU Status -->
+                <div class="gpu-status-enhanced" id="gpuStatus">
+                    <div class="status-indicator">
+                        <span class="material-symbols-outlined">memory</span>
+                        <div class="status-info">
+                            <span class="status-title">RTX 4060</span>
+                            <span class="status-subtitle">GPU ACTIVE</span>
+                        </div>
+                        <div class="status-led active"></div>
+                    </div>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" id="themeToggle">
+                    <button class="theme-btn active" data-theme="light">
+                        <span class="material-symbols-outlined">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Enhanced Navigation with Google Material Design -->
+    <nav class="navigation-enhanced">
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="analyzer">
+                    <div class="tab-icon">
+                        <span class="material-symbols-outlined">analytics</span>
+                    </div>
+                    <div class="tab-content">
+                        <span class="tab-title">AI Analysis</span>
+                        <span class="tab-subtitle">Real-time Processing</span>
+                    </div>
+                    <div class="tab-indicator"></div>
+                </button>
+
+            <button class="nav-tab" data-tab="dashboard">
+                    <div class="tab-icon">
+                        <span class="material-symbols-outlined">dashboard</span>
+                    </div>
+                    <div class="tab-content">
+                        <span class="tab-title">Dashboard</span>
+                        <span class="tab-subtitle">Insights & Analytics</span>
+                    </div>
+                    <div class="tab-indicator"></div>
+                </button>
+
+                
+
+
+                <button class="nav-tab" data-tab="business-analytics">
+                    <div class="tab-icon">
+                        <span class="material-symbols-outlined">business_center</span>
+                    </div>
+                    <div class="tab-content">
+                        <span class="tab-title">Business Analytics</span>
+                        <span class="tab-subtitle">Data Insights & Reports</span>
+                    </div>
+                    <div class="tab-indicator"></div>
+                </button>
+
+                <button class="nav-tab" data-tab="models">
+                    <div class="tab-icon">
+                        <span class="material-symbols-outlined">model_training</span>
+                    </div>
+                    <div class="tab-content">
+                        <span class="tab-title">AI Models</span>
+                        <span class="tab-subtitle">ML Model Details</span>
+                    </div>
+                    <div class="tab-indicator"></div>
+                </button>
+            </div>
+
+            <!-- Performance Indicator -->
+            <div class="performance-indicator">
+                <div class="indicator-item">
+                    <span class="material-symbols-outlined">speed</span>
+                    <div class="indicator-data">
+                        <span id="inferenceTime">--ms</span>
+                        <label>Inference</label>
+                    </div>
+                </div>
+                <div class="indicator-item">
+                    <span class="material-symbols-outlined">memory</span>
+                    <div class="indicator-data">
+                        <span id="gpuAcceleration">RTX 4060</span>
+                        <label>GPU</label>
+                    </div>
+                </div>
+                <div class="indicator-item">
+                    <span class="material-symbols-outlined">verified</span>
+                    <div class="indicator-data">
+                        <span id="modelConfidence">95%</span>
+                        <label>Confidence</label>
+                    </div>
+                </div>
+                <div class="indicator-item">
+                    <span class="material-symbols-outlined">language</span>
+                    <div class="indicator-data">
+                        <span id="languageDetected">EN</span>
+                        <label>Language</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content-enhanced">
+        <!-- AI Analysis Tab -->
+        <section class="tab-panel active" id="analyzer">
+
+
+    <div class="tab-header">
+                <div class="header-info">
+                    <h2>AI-Powered Feedback Analysis</h2>
+                    <p>Advanced sentiment analysis with neural emotion detection powered by your custom-trained RTX 4060 models</p>
+                </div>
+                <div class="header-actions">
+                    <button class="action-button secondary" id="importBtn">
+                        <span class="material-symbols-outlined">upload_file</span>
+                        Import Data
+                    </button>
+                    <button class="action-button secondary" id="exportBtn">
+                        <span class="material-symbols-outlined">download</span>
+                        Export Results
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analysis Layout -->
+            <div class="analyzer-layout">
+                <!-- Input Panel -->
+                <div class="input-panel">
+                    <div class="panel-header">
+                        <div class="header-content">
+                            <span class="material-symbols-outlined">edit_note</span>
+                            <div class="header-text">
+                                <h3>Feedback Input</h3>
+                                <p>Enter customer feedback for AI analysis</p>
+                            </div>
+                        </div>
+                        <div class="panel-actions">
+                            <button class="icon-button" title="Clear">
+                                <span class="material-symbols-outlined">clear</span>
+                            </button>
+                            <button class="icon-button" title="Save">
+                                <span class="material-symbols-outlined">save</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-container">
+                        <div class="textarea-container">
+                                <textarea
+                                        id="feedbackInput"
+                                        class="feedback-textarea"
+                                        placeholder="Enter customer feedback here for AI-powered analysis...
+
+Example inputs:
+• 'The workshop was absolutely fantastic! Great speakers and hands-on sessions.'
+• 'Very disappointed with the technical setup. Audio issues throughout.'
+• 'Mixed feelings - content was good but venue was overcrowded.'">
+                                </textarea>
+
+                            <div class="input-meta">
+                                <span class="character-count"><span id="charCount">0</span>/5000 characters</span>
+                                <div class="input-actions">
+                                    <!-- ✅ File Upload Button -->
+                                    <button class="meta-action" id="uploadFile" title="Upload File">
+                                        <span class="material-symbols-outlined">upload_file</span>
+                                    </button>
+                                    <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;">
+
+                                    <button class="meta-action" id="voiceInput" title="Voice Input">
+                                        <span class="material-symbols-outlined">mic</span>
+                                    </button>
+                                    <button class="meta-action" id="pasteInput" title="Paste from Clipboard">
+                                        <span class="material-symbols-outlined">content_paste</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-panel">
+                            <div class="control-row">
+                                <!-- ✅ English Only Language -->
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        <span class="material-symbols-outlined">language</span>
+                                        Language
+                                    </label>
+                                    <select id="languageSelect" class="enhanced-select">
+                                        <option value="en" selected>🇺🇸 English</option>
+                                    </select>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">
+                                        <span class="material-symbols-outlined">settings</span>
+                                        Analysis Mode
+                                    </label>
+                                    <select id="analysisMode" class="enhanced-select">
+                                        <option value="comprehensive">🧠 Comprehensive Analysis</option>
+                                        <option value="quick">⚡ Quick Analysis</option>
+                                        <option value="detailed">🔍 Detailed Analysis</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="analysis-controls">
+                                <button class="analyze-button" id="analyzeBtn">
+                                    <div class="button-content">
+                                        <span class="material-symbols-outlined">auto_awesome</span>
+                                        Analyze with AI
+                                    </div>
+                                    <div class="button-loader">
+                                        <div class="spinner-small"></div>
+                                    </div>
+                                </button>
+
+                                <div class="quick-examples">
+                                    <span class="examples-label">Quick Examples:</span>
+                                    <div class="example-chips">
+                                        <button class="example-chip" data-example="positive">
+                                            <span class="material-symbols-outlined">sentiment_satisfied</span>
+                                            Positive
+                                        </button>
+                                        <button class="example-chip" data-example="negative">
+                                            <span class="material-symbols-outlined">sentiment_dissatisfied</span>
+                                            Negative
+                                        </button>
+                                        <button class="example-chip" data-example="technical">
+                                            <span class="material-symbols-outlined">bug_report</span>
+                                            Technical
+                                        </button>
+                                        <button class="example-chip" data-example="mixed">
+                                            <span class="material-symbols-outlined">sentiment_neutral</span>
+                                            Mixed
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel">
+                    <div class="panel-header">
+                        <div class="header-content">
+                            <span class="material-symbols-outlined">analytics</span>
+                            <div class="header-text">
+                                <h3>AI Analysis Results</h3>
+                                <p>Real-time insights powered by your trained models</p>
+                            </div>
+                        </div>
+                        <div class="panel-actions">
+                            <button class="icon-button" title="Refresh">
+                                <span class="material-symbols-outlined">refresh</span>
+                            </button>
+                            <button class="icon-button" title="Share">
+                                <span class="material-symbols-outlined">share</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="results-grid">
+                        <!-- Sentiment Analysis Card -->
+                        <div class="result-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="material-symbols-outlined">sentiment_satisfied</span>
+                                    <div class="title-content">
+                                        <h4>Sentiment Analysis</h4>
+                                        <p>Overall emotional tone</p>
+                                    </div>
+                                </div>
+                                <div class="confidence-indicator">
+                                    <span class="confidence-value">--</span>
+                                    <span class="confidence-label">%</span>
+                                </div>
+                            </div>
+
+                            <div class="sentiment-display">
+                                <div class="sentiment-visual">
+                                    <div class="sentiment-score-ring">
+                                        <svg width="120" height="120">
+                                            <circle class="ring-bg" cx="60" cy="60" r="45"></circle>
+                                            <circle class="ring-progress" id="sentimentRing" cx="60" cy="60" r="45"></circle>
+                                        </svg>
+                                        <div class="score-content">
+                                            <span class="sentiment-score" id="sentimentScore">--</span>
+                                            <span class="sentiment-label" id="sentimentLabel">Ready</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sentiment-details">
+                                    <div class="emotion-breakdown" id="emotionDisplay">
+                                        <!-- Emotions will be populated here by JavaScript -->
+                                        <div class="emotion-item">
+                                            <span class="emotion-icon">😐</span>
+                                            <span class="emotion-name">Neutral</span>
+                                            <div class="emotion-bar">
+                                                <div class="emotion-fill" style="width: 0%"></div>
+                                            </div>
+                                            <span class="emotion-value">0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- ✅ Confidence Score Card -->
+                        <div class="result-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="material-symbols-outlined">verified</span>
+                                    <div class="title-content">
+                                        <h4>Confidence Score</h4>
+                                        <p>Model accuracy percentage</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="confidence-display" id="confidenceDisplay">
+                                <div class="confidence-score-ring">
+                                    <svg width="120" height="120">
+                                        <circle class="ring-bg" cx="60" cy="60" r="45"></circle>
+                                        <circle class="ring-progress" id="confidenceRing" cx="60" cy="60" r="45"></circle>
+                                    </svg>
+                                    <div class="score-content">
+                                        <span class="confidence-score" id="confidencePercentage">--</span>
+                                        <span class="confidence-text">Confidence</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Themes Card -->
+                        <div class="result-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="material-symbols-outlined">label</span>
+                                    <div class="title-content">
+                                        <h4>Key Themes</h4>
+                                        <p>Extracted topics</p>
+                                    </div>
+                                </div>
+                                <div class="theme-stats">
+                                    <span class="theme-count" id="themeCount">0</span>
+                                    <span class="theme-label">themes</span>
+                                </div>
+                            </div>
+
+                            <div class="themes-display" id="themesDisplay">
+                                <div class="themes-empty-state">
+                                    <span class="material-symbols-outlined">search</span>
+                                    <h4>No themes detected</h4>
+                                    <p>Themes will appear here after analysis</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Response Card -->
+                        <div class="result-card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <span class="material-symbols-outlined">chat</span>
+                                    <div class="title-content">
+                                        <h4>AI Response</h4>
+                                        <p>Generated response</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="response-display" id="responseDisplay">
+                                <div class="response-empty-state">
+                                    <span class="material-symbols-outlined">chat_bubble</span>
+                                    <h4>AI Response Ready</h4>
+                                    <p>AI-generated response will appear here after analysis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics Panel -->
+            <div class="performance-panel">
+                <div class="panel-header">
+                    <h3>Neural Processing Metrics</h3>
+                    <p>Real-time performance monitoring</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span class="material-symbols-outlined">schedule</span>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">--<span class="metric-unit">ms</span></div>
+                            <div class="metric-label">Inference Time</div>
+                        </div>
+                        <div class="metric-trend positive">
+                            <span class="material-symbols-outlined">trending_up</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span class="material-symbols-outlined">memory</span>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">RTX 4060</div>
+                            <div class="metric-label">GPU</div>
+                        </div>
+                        <div class="metric-status">
+                            <div class="status-dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span class="material-symbols-outlined">verified</span>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">--<span class="metric-unit">%</span></div>
+                            <div class="metric-label">Model Confidence</div>
+                        </div>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <span class="material-symbols-outlined">translate</span>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value language-flag">🇺🇸</div>
+                            <div class="metric-label">Language Detected</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Tab -->
+        <section class="tab-panel " id="dashboard">
+            <div class="tab-header">
+                <div class="header-info">
+                    <h2>Analytics Dashboard</h2>
+                    <p>Comprehensive insights and performance metrics from your AIML analysis engine</p>
+                </div>
+                <div class="header-actions">
+                    <button class="action-button secondary">
+                        <span class="material-symbols-outlined">refresh</span>
+                        Refresh Data
+                    </button>
+                    <button class="action-button primary" id="dashboardExportBtn">
+                        <span class="material-symbols-outlined">download</span>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-layout">
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="material-symbols-outlined">analytics</span>
+                            <h4>Total Analysis</h4>
+                        </div>
+                        <div class="kpi-value">
+                            <span class="value" id="totalAnalysis">2,847</span>
+                            <span class="change positive">+18.5%</span>
+                        </div>
+                        <div class="kpi-chart">
+                            <canvas id="totalAnalysisChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="material-symbols-outlined">sentiment_satisfied</span>
+                            <h4>Positive Rate</h4>
+                        </div>
+                        <div class="kpi-value">
+                            <span class="value" id="positiveRate">74.2%</span>
+                            <span class="change positive">+8.3%</span>
+                        </div>
+                        <div class="kpi-chart">
+                            <canvas id="positiveRateChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="material-symbols-outlined">priority_high</span>
+                            <h4>High Priority</h4>
+                        </div>
+                        <div class="kpi-value">
+                            <span class="value" id="highPriority">47</span>
+                            <span class="change negative">-12.4%</span>
+                        </div>
+                        <div class="kpi-chart">
+                            <canvas id="highPriorityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="material-symbols-outlined">speed</span>
+                            <h4>Avg Response</h4>
+                        </div>
+                        <div class="kpi-value">
+                            <span class="value" id="avgResponse">89ms</span>
+                            <span class="change positive">-22.1%</span>
+                        </div>
+                        <div class="kpi-chart">
+                            <canvas id="avgResponseChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title">
+                                <span class="material-symbols-outlined">pie_chart</span>
+                                <h4>Sentiment Distribution</h4>
+                            </div>
+                            <div class="timeline-controls">
+                                <button class="timeline-btn active">7D</button>
+                                <button class="timeline-btn">30D</button>
+                                <button class="timeline-btn">90D</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="sentimentChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <div class="chart-title">
+                                <span class="material-symbols-outlined">bar_chart</span>
+                                <h4>Top Themes</h4>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="themeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card full-width">
+                        <div class="chart-header">
+                            <div class="chart-title">
+                                <span class="material-symbols-outlined">timeline</span>
+                                <h4>Analysis Timeline</h4>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="timelineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Analytics Tab -->
+        <section class="tab-panel" id="business-analytics">
+            <div class="tab-header">
+                <div class="header-info">
+                    <h2>Business Analytics & Intelligence</h2>
+                    <p>Advanced data analysis, reporting, and business intelligence powered by AI</p>
+                </div>
+                <div class="header-actions">
+                    <button class="action-button secondary" id="refreshAnalytics">
+                        <span class="material-symbols-outlined">refresh</span>
+                        Refresh Data
+                    </button>
+                    <button class="action-button primary" id="exportReport">
+                        <span class="material-symbols-outlined">download</span>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div class="analytics-upload-section">
+                <div class="upload-container">
+                    <div class="upload-header">
+                        <h3>Data Upload & Processing</h3>
+                        <p>Upload large datasets for comprehensive business analysis</p>
+                    </div>
+
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <span class="material-symbols-outlined">cloud_upload</span>
+                            </div>
+                            <div class="upload-text">
+                                <h4>Drag & Drop Files Here</h4>
+                                <p>or <button class="browse-btn" id="browseFiles">browse files</button></p>
+                                <div class="upload-formats">
+                                    <span class="format-tag">CSV</span>
+                                    <span class="format-tag">PDF</span>
+                                </div>
+                                <p class="upload-limit">Max file size: 100MB</p>
+                            </div>
+                        </div>
+                        <input type="file" id="fileUploadInput" multiple accept=".csv,.pdf" style="display: none;" aria-label="Upload CSV or PDF files">
+                    </div>
+
+                    <!-- Literal Upload File Button -->
+                    <div class="upload-actions" style="margin-top: 16px; display: flex; justify-content: center;">
+                        <button class="action-button primary" id="uploadFilesBtn" type="button">
+                            <span class="material-symbols-outlined">upload_file</span>
+                            Upload File
+                        </button>
+                        <input type="file" id="simpleFileInput" multiple accept=".csv,.pdf" aria-label="Upload CSV or PDF files" style="margin-left: 12px;">
+                    </div>
+
+                    <!-- Data Summary (auto-generated on upload) -->
+                    <div class="insights-section" id="dataSummarySection" style="display: none; margin-top: 16px;">
+                        <h4>Data Summary</h4>
+                        <div class="insights-grid">
+                            <div class="insight-card" style="grid-column: 1 / -1;">
+                                <div class="insight-icon">
+                                    <span class="material-symbols-outlined">summarize</span>
+                                </div>
+                                <div class="insight-content">
+                                    <h5>Overview</h5>
+                                    <p id="dataSummaryText">Summary will appear here after upload.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Processing Queue -->
+                    <div class="file-queue" id="fileQueue" style="display: none;">
+                        <h4>Processing Queue</h4>
+                        <div class="queue-list" id="queueList">
+                            <!-- Files will be added here dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Analyze with AI Button -->
+                    <div class="analytics-analyze-section" style="display: flex; justify-content: center;">
+                        <button class="analytics-analyze-btn" id="analyticsAnalyzeBtn">
+                            <div class="button-content">
+                                <span class="material-symbols-outlined">auto_awesome</span>
+                                Analyze with AI
+                            </div>
+                            <div class="button-loader">
+                                <div class="spinner-small"></div>
+                            </div>
+                        </button>
+                        <p class="analyze-description">Upload CSV or PDF files and click to start AI-powered business analysis</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Dashboard -->
+            <div class="analytics-dashboard">
+                <div class="dashboard-grid">
+                    <!-- Key Metrics Cards -->
+                    <div class="metrics-section">
+                        <h3>Key Performance Indicators</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon">
+                                    <span class="material-symbols-outlined">trending_up</span>
+                                </div>
+                                <div class="metric-content">
+                                    <div class="metric-value" id="totalRevenue">$0</div>
+                                    <div class="metric-label">Total Revenue</div>
+                                    <div class="metric-change positive">+12.5%</div>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon">
+                                    <span class="material-symbols-outlined">people</span>
+                                </div>
+                                <div class="metric-content">
+                                    <div class="metric-value" id="totalCustomers">0</div>
+                                    <div class="metric-label">Total Customers</div>
+                                    <div class="metric-change positive">+8.2%</div>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon">
+                                    <span class="material-symbols-outlined">star</span>
+                                </div>
+                                <div class="metric-content">
+                                    <div class="metric-value" id="avgRating">0.0</div>
+                                    <div class="metric-label">Average Rating</div>
+                                    <div class="metric-change positive">+0.3</div>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon">
+                                    <span class="material-symbols-outlined">sentiment_satisfied</span>
+                                </div>
+                                <div class="metric-content">
+                                    <div class="metric-value" id="satisfactionRate">0%</div>
+                                    <div class="metric-label">Satisfaction Rate</div>
+                                    <div class="metric-change positive">+5.1%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="charts-section">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h4>Revenue Trends</h4>
+                                <div class="chart-controls">
+                                    <button class="chart-btn active" data-period="7d">7D</button>
+                                    <button class="chart-btn" data-period="30d">30D</button>
+                                    <button class="chart-btn" data-period="90d">90D</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h4>Customer Satisfaction Distribution</h4>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="satisfactionChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h4>Top Product Categories</h4>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="categoriesChart"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- AI Suggestions (Gemini) placed after charts -->
+                    <div class="insights-section" id="geminiSuggestionsSection" style="display: none;">
+                        <h4>AI Suggestions • Powered by Gemini</h4>
+                        <div class="insights-grid">
+                            <div class="insight-card" style="grid-column: 1 / -1;">
+                                <div class="insight-icon">
+                                    <span class="material-symbols-outlined">auto_awesome</span>
+                                </div>
+                                <div class="insight-content">
+                                    <h5>Strategic Recommendations</h5>
+                                    <p id="geminiSuggestionsText">Generating suggestions...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Table Section -->
+                    <div class="data-table-section">
+                        <div class="table-header">
+                            <h4>Recent Analysis Results</h4>
+                            <div class="table-controls">
+                                <div class="search-box">
+                                    <span class="material-symbols-outlined">search</span>
+                                    <input type="text" placeholder="Search results..." id="tableSearch">
+                                </div>
+                                <select class="filter-select" id="tableFilter">
+                                    <option value="all">All Results</option>
+                                    <option value="positive">Positive</option>
+                                    <option value="negative">Negative</option>
+                                    <option value="neutral">Neutral</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table class="analytics-table" id="analyticsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Customer</th>
+                                        <th>Company</th>
+                                        <th>Sentiment</th>
+                                        <th>Rating</th>
+                                        <th>Category</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="analyticsTableBody">
+                                    <tr class="empty-row">
+                                        <td colspan="7" class="empty-state">
+                                            <span class="material-symbols-outlined">inbox</span>
+                                            <p>No data available. Upload files to begin analysis.</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- AI Insights Section -->
+                    <div class="insights-section">
+                        <h4>AI-Generated Business Insights</h4>
+                        <div class="insights-grid">
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <span class="material-symbols-outlined">lightbulb</span>
+                                </div>
+                                <div class="insight-content">
+                                    <h5>Key Insight</h5>
+                                    <p id="keyInsight">Upload data to receive AI-powered business insights and recommendations.</p>
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <span class="material-symbols-outlined">warning</span>
+                                </div>
+                                <div class="insight-content">
+                                    <h5>Alert</h5>
+                                    <p id="alertInsight">No alerts at this time. Continue monitoring for important trends.</p>
+                                </div>
+                            </div>
+
+                            <div class="insight-card">
+                                <div class="insight-icon">
+                                    <span class="material-symbols-outlined">trending_up</span>
+                                </div>
+                                <div class="insight-content">
+                                    <h5>Trend</h5>
+                                    <p id="trendInsight">Data analysis will reveal emerging trends and patterns.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Other tabs (actions, batch, models) remain the same -->
+        
+
+
+        <section class="tab-panel" id="models">
+            <div class="tab-header">
+                <div class="header-info">
+                    <h2>Custom ML Model Architecture & Technical Specifications</h2>
+                    <p>Developed by Vishnupriyan P R • Enterprise-grade Transformer models powering consumer feedback intelligence</p>
+                </div>
+            </div>
+
+            <div class="model-doc">
+                <div class="doc-hero">
+                    <div class="doc-hero-left">
+                        <h3 class="doc-title">Advanced Sentiment Analysis Neural Network</h3>
+                        <p class="doc-subtitle">State-of-the-art Transformer architecture achieving 95.1% sentiment accuracy and 93% multi-label emotion accuracy.</p>
+                        <div class="stat-chips">
+                            <div class="stat-chip"><span class="material-symbols-outlined">verified</span> 95.1% Accuracy</div>
+                            <div class="stat-chip"><span class="material-symbols-outlined">speed</span> 78ms Inference</div>
+                            <div class="stat-chip"><span class="material-symbols-outlined">memory</span> RTX 4060 Optimized</div>
+                            <div class="stat-chip"><span class="material-symbols-outlined">dataset</span> 100K+ Samples</div>
+                        </div>
+                    </div>
+                    <div class="doc-hero-right">
+                        <div class="diagram">
+                            <div class="block">Tokenizer</div>
+                            <div class="arrow"></div>
+                            <div class="block primary">BERT-Large Encoder ×24</div>
+                            <div class="arrow"></div>
+                            <div class="heads">
+                                <div class="head">Sentiment Head</div>
+                                <div class="head">Emotion Head</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">hub</span> Core Architecture</div>
+                        <div class="doc-card-content">
+                            <h4>Primary Sentiment Model</h4>
+                            <ul class="doc-list">
+                                <li><b>Base:</b> Fine-tuned BERT-Large Transformer</li>
+                                <li><b>Params:</b> 340M+</li>
+                                <li><b>Layers:</b> 24 encoder blocks, <b>Heads:</b> 16 per layer</li>
+                                <li><b>Dims:</b> 1024 hidden • 4096 FFN</li>
+                                <li><b>Vocab:</b> 30,522 WordPiece + domain tokens</li>
+                            </ul>
+                            <h4>Secondary Emotion Detection</h4>
+                            <ul class="doc-list">
+                                <li>BERT-based multi-label classifier w/ custom heads</li>
+                                <li>6 emotions: Joy, Love, Anger, Fear, Sadness, Surprise</li>
+                                <li>Joint sentiment–emotion learning</li>
+                                <li>93.0% accuracy • 91.2% macro F1</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">science</span> Training Methodology</div>
+                        <div class="doc-card-content">
+                            <h4>Dataset</h4>
+                            <ul class="doc-list">
+                                <li>75k train • 15k val • 10k test (balanced)</li>
+                                <li>Domains: E‑commerce, SaaS, Hospitality, Healthcare, Finance</li>
+                                <li>English + colloquial, business terminology</li>
+                            </ul>
+                            <h4>Techniques</h4>
+                            <ol class="doc-list">
+                                <li>Self-supervised domain pre-training (500k+ unlabeled)</li>
+                                <li>Active learning with uncertainty sampling</li>
+                                <li>Knowledge distillation from larger teachers</li>
+                                <li>Data augmentation: synonym + paraphrase</li>
+                                <li>Adversarial training for robustness</li>
+                            </ol>
+                            <h4>Optimization</h4>
+                            <ul class="doc-list">
+                                <li>AdamW • lr=3e‑5 • warmup + poly decay</li>
+                                <li>Batch 32 (grad accumulation → 128)</li>
+                                <li>10 epochs • early stopping</li>
+                                <li>Dropout 0.1 • Label smoothing 0.1 • WD 0.01</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">insights</span> Performance Metrics</div>
+                        <div class="doc-card-content code-block"><pre>
+Accuracy: 95.1%
+Precision: Positive 94.8% • Negative 95.4% • Neutral 94.9%
+Recall:    Positive 95.2% • Negative 94.7% • Neutral 95.1%
+F1:        Macro 95.0% • Weighted 95.1%
+Kappa:     0.926    • AUC-ROC: 0.987
+                        </pre></div>
+                        <div class="doc-card-content code-block"><pre>
+Emotion Accuracy: 93.0%
+Hamming Loss: 0.071 • Macro F1: 91.2% • Micro F1: 92.8%
+Per-Emotion F1 → Joy 94.1 • Love 90.3 • Anger 93.7 • Fear 88.9 • Sadness 91.5 • Surprise 88.7
+                        </pre></div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">rocket_launch</span> Inference & Deployment</div>
+                        <div class="doc-card-content">
+                            <ul class="doc-list">
+                                <li>CUDA‑optimized for RTX 4060 • 78ms avg/sample</li>
+                                <li>Throughput: 12,800 analyses/min • 4.2GB GPU mem</li>
+                                <li>PyTorch 2.0 • TorchScript • INT8 quantization (3× speed)</li>
+                                <li>ONNX export • TensorRT integration</li>
+                                <li>Model size: 1.3GB compressed • 2.1GB FP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-grid">
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">auto_awesome</span> Unique Innovations</div>
+                        <div class="doc-card-content">
+                            <ul class="doc-list">
+                                <li><b>Adaptive Confidence Calibration</b>: temperature scaling, Bayesian uncertainty, dynamic thresholds</li>
+                                <li><b>Domain-Specific Token Enhancement</b>: 2,500+ business tokens, subword regularization</li>
+                                <li><b>Multi‑Task Learning</b>: shared encoder with task‑specific heads and cross‑task regularization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">deployed_code</span> API Specifications</div>
+                        <div class="doc-card-content code-block"><pre>
+# Sentiment Analysis
+POST /api/v1/analyze/sentiment
+{ "text": "Customer feedback text", "return_confidence": true }
+
+# Emotion Detection
+POST /api/v1/analyze/emotions
+{ "text": "Customer feedback text", "return_scores": true, "threshold": 0.1 }
+
+# Combined Analysis
+POST /api/v1/analyze/complete
+{ "text": "Customer feedback text", "include_themes": true, "generate_response": true }
+                        </pre></div>
+                        <div class="doc-card-content code-block"><pre>
+// Streaming Analysis (WebSocket)
+const socket = new WebSocket('ws://localhost:5000/api/v1/stream');
+socket.send(JSON.stringify({ text: 'Real-time feedback', session_id: 'unique_session_id' }));
+                        </pre></div>
+                    </div>
+
+                    <div class="doc-card">
+                        <div class="doc-card-header"><span class="material-symbols-outlined">timeline</span> Roadmap</div>
+                        <div class="doc-card-content">
+                            <ul class="doc-list">
+                                <li>v2.0: Multilingual (25+), temporal trends, aspect-based sentiment</li>
+                                <li>Conversational context, industry variants</li>
+                                <li>Model compression 50%, edge deployment, federated learning</li>
+                                <li>AutoML-driven hyperparameter search</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-footer">
+                    <div class="credits">
+                        <div class="avatar">VP</div>
+                        <div>
+                            <div class="credit-title">Done by Vishnupriyan P R</div>
+                            <div class="credit-sub">NLP • Transformers • Enterprise Inference Optimization</div>
+                        </div>
+                    </div>
+                    <div class="doc-links">
+                        <a href="https://www.kaggle.com/code/prakharrathi25/sentiment-analysis-using-bert" target="_blank" rel="noopener">Reference 1</a>
+                        <a href="https://www.sciencedirect.com/science/article/pii/S2590005622000224" target="_blank" rel="noopener">Reference 2</a>
+                        <a href="https://github.com/dA505819/Sentiment_Analysis_with_Deep_Learning_using_BERT" target="_blank" rel="noopener">Reference 3</a>
+                        <a href="https://www.geeksforgeeks.org/nlp/sentiment-classification-using-bert/" target="_blank" rel="noopener">Reference 4</a>
+                        <a href="https://www.tensorflow.org/text/tutorials/classify_text_with_bert" target="_blank" rel="noopener">Reference 5</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- ✅ Simple Google Loading Animation -->
+<div class="loading-overlay-enhanced" id="loadingOverlay">
+    <div class="simple-loading-content">
+        <div class="simple-google-spinner"></div>
+        <div class="simple-loading-text">
+            <h3 id="loadingTitle">Processing</h3>
+            <p id="loadingSubtitle">Analyzing with AI...</p>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
