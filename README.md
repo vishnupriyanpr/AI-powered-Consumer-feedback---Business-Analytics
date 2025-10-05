@@ -176,9 +176,6 @@ This project is made with precision and innovation by **Vishnupriyan P R**.
   </tr>
 </table>
 
-**Technical Expertise**: Custom BERT Training • RTX 4060 Optimization • Real-time Analytics • Material Design Implementation • Enterprise AI Architecture
-
-**Key Achievements**: 95.1% Sentiment Accuracy • <100ms Inference Time • 12,800+ Analyses/Min • Production-Ready Deployment
 
 ---
 <div align="center">
