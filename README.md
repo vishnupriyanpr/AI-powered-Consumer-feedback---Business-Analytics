@@ -129,12 +129,9 @@ Requirements:
 - Modern web browser with JavaScript enabled
 
 ---
-
-
 ## Demo Video
 
-<iframe src="https://player.vimeo.com/video/1123246906" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-
+[![Watch the video](https://img.youtube.com/vi/U01EYXlp4WU/hqdefault.jpg)](https://www.youtube.com/watch?v=U01EYXlp4WU)
 
 ---
 ## 🤝 Contributing
